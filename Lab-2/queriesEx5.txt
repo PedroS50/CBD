@@ -1,0 +1,18 @@
+** List the capital and area code of countries with latitude between -10, 10 and longitude between 0, 20, sorted in descending order by area code. **
+Query: db.countries.find({ $and: [{ "latlng.0":  {$gt: -10, $lt: 10} }, {"latlng.1": {$gt:0, $lt: 20} } ]}, {area: 1, capital: 1, "_id": 0})
+
+** List the names of all european countries which aren't independent. **
+Query: db.countries.find({$and: [{independent: false}, {region: "Europe"}]}, {"name.common": 1, _id: 0})
+
+** List the official name and languages of all english-speaking countries that are located outside of America, sorted alphabetically. **
+Query: db.countries.find({$and: [{"languages.eng": {$exists: true, $ne: null}}, {region: {$ne: "Americas"}} ]}, {"name.official": 1,  languages: 1, _id: 0}).sort({"name.official": 1})
+
+** List the name and capitals of all Northern and Southern African countries who are members of the United Nations. **
+Query: db.countries.find({ $and: [{ unMember: true}, {$or: [ {subregion: "Southern Africa"}, {subregion: "Northern Africa"} ] }] }, {"name.common":1, capital:1, _id: 0}).sort({subregion: 1})
+
+** List the name, currencies and capital of european countries who use Swiss Franc or British Pound as currency. **
+Query: db.countries.find({ $and: [{ $or: [{ "currencies.GBP": {$exists: true} }, { "currencies.CHF": {$exists: true} }] }, { region: "Europe" }] }, {currencies: 1, "name.common": 1, capital:1, _id: 0})
+
+** List the countries whose offical names start with "Republic" and have a border with Panama. **
+Query: db.countries.find({ $and: [{ "name.official": {$regex: /^Republic/i} }, { borders: {$elemMatch: {$eq: "PAN"}} }] }).pretty()
+
