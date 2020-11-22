@@ -1,3 +1,7 @@
+# NMEC: 93221
+# Pedro Santos
+##############
+
 import pymongo
 import time
 from pymongo import TEXT

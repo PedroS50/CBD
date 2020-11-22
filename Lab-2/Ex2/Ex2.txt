@@ -1,4 +1,6 @@
 // NMEC: 93221
+// Pedro Santos
+///////////////
 
 #1
 db.rest.find()
@@ -61,13 +63,37 @@ db.rest.aggregate( { $group: {_id: "$localidade", count: {$sum: 1} } } ).pretty(
 db.rest.aggregate({$addFields : { averageScore :  {$avg : '$grades.score'}}}, {$match : {averageScore: {$gt: 30}}}).pretty()
 
 #21
-db.rest.find( { gastronomia:"Americana" } ).aggregate()
+db.rest.aggregate({$addFields : { sumScore :  {$sum : "$grades.score"}}}, {$match: {gastronomia: "American", sumScore: {$gt:70}, "address.coord.0": {$lt:-60}}}).pretty()
+
 #22
 db.rest.aggregate({$addFields : { sumScore :  {$sum : "$grades.score"}}}, {$match : {gastronomia: "American", sumScore:{$gt:70}, "address.coord.0": {$lt:-60} } }).pretty()
 
 #23
 db.rest.aggregate( { $match: {"address.rua": "Flatbush Avenue"} }, { $group: {_id: "$gastronomia"}, $count: {$sum } )
+
 #24
+db.rest.aggregate({$group: {_id: "$address.rua", numRest: {$sum:1}}}, {$sort: {numRest: -1}})
 
 #25
+#26 - Número de grades por restaurante, em ordem descendente.
+db.rest.aggregate({$project: {restaurant_id: 1, grades: 1}}, {$unwind: "$grades"}, {$group: {_id: "$restaurant_id", nGrades: {$sum: 1}}}, {$sort: {nGrades: -1}})
+
+#27 - Address e nome de restaurantes cuja rua contem a palavra "Park"
+db.rest.aggregate({ $match: {"address.rua": {$regex: ".* Park .*"}} }, {$project: {address: 1, nome: 1}}).pretty()
+
+#28 - Average grade por gastronomia
+db.rest.aggregate({$project: {restaurant_id: 1, grades: 1, gastronomia: 1}}, {$unwind: "$grades"}, {$group: {_id: "$gastronomia", avgGrade: {$avg: "$grades.score"}}}, {$project: {nome: 1, gastronomia: 1, avgGrade: {$trunc: ["$avgGrade", 2]}}})
+
+#29 - Restaurantes com latidude menor do que 0 e longitude maior do que 0, ordenados por ambos os atributos em ordem ascendente.
+db.rest.aggregate({ $project: {_id: 0, nome: 1, restaurant_id: 1, coord0: {$arrayElemAt: ["$address.coord", 0]}, coord1: {$arrayElemAt: ["$address.coord", 1]} }}, {$match: {coord0: {$lte: 0}, coord1: {$gte: 0}}}, {$sort: {coord0: 1, coord1: 1}})
+
+#30 - Quantidade de grades A, B, etc. por cada restaurant, ordenado por restaurant_id.
+db.rest.aggregate({$unwind: "$grades"}, { $group: {_id: {restaurant_id: "$restaurant_id", grade: "$grades.grade"}, n: {$sum: 1}}}, {$project: {_id: 0, restaurant_id: "$_id.restaurant_id", grade: "$_id.grade", n: "$n"}}, {$sort: {restaurant_id:1}})
+
+
+
+
+
+
+
 
