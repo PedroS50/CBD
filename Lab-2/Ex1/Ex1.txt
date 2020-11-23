@@ -1,0 +1,221 @@
+// NMEC: 93221
+// Pedro Santos
+///////////////
+
+// Switch to database called "mydb"
+> use mydb
+switched to db mydb
+
+// Show what database we are currently in
+> db
+mydb
+
+// Show available databases
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+// Insert document into current database
+> db.movie.insert({"name":"tutorials point"})
+WriteResult({ "nInserted" : 1 })
+
+// "mydb" is now present on the list of databases
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydb    0.000GB
+
+// Delete current database
+> db.dropDatabase()
+{ "dropped" : "mydb", "ok" : 1 }
+
+// Create a collection
+> db.createCollection("mycollection")
+{ "ok" : 1 }
+
+// Show current db collections
+> show collections
+mycollection
+
+// Create a collection with additional parameters like auto numbering of the ID, size of the collection and max number of docs
+> db.createCollection("mycol", { capped : true, autoIndexID : true, size : 6142800, max : 10000 } )
+{
+	"ok" : 0,
+	"errmsg" : "BSON field 'create.autoIndexID' is an unknown field.",
+	"code" : 40415,
+	"codeName" : "Location40415"
+}
+
+// When inserting a document into a collection, if the collection doesn't exist, it's automatically created
+> db.tutorialspoint.insert({"name" : "tutorialspoint"})
+WriteResult({ "nInserted" : 1 })
+> show collections
+mycollection
+tutorialspoint
+
+// Delete a collection
+> db.mycollection.drop()
+true
+> show collections
+tutorialspoint
+
+// Insert document into "users" collection
+> db.users.insert({
+... _id : ObjectId("507f191e810c19729de860ea"),
+... title: "MongoDB Overview",
+... description: "MongoDB is no sql database",
+... by: "tutorials point",
+... url: "http://www.tutorialspoint.com",
+... tags: ['mongodb', 'database', 'NoSQL'],
+... likes: 100
+... })
+WriteResult({ "nInserted" : 1 })
+
+// Insert an array of documents
+> db.post.insert([
+... {
+... title: "MongoDB Overview",
+... description: "MongoDB is no SQL database",
+... by: "tutorials point",
+... url: "http://www.tutorialspoint.com",
+... tags: ["mongodb", "database", "NoSQL"],
+... likes: 100
+... },
+... {
+... title: "NoSQL Database",
+... description: "NoSQL database doesn't have tables",
+... by: "tutorials point",
+... url: "http://www.tutorialspoint.com",
+... tags: ["mongodb", "database", "NoSQL"],
+... likes: 20,
+... comments: [
+... {
+... user:"user1",
+... message: "My first comment",
+... dateCreated: new Date(2013,11,10,2,35),
+... like: 0
+... }
+... ]
+... }
+... ])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 2,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+// Insert 1 document
+> db.empDetails.insertOne(
+... {
+... First_Name: "Radhika",
+... Last_Name: "Sharma",
+... Date_Of_Birth: "1995-09-26",
+... e_mail: "radhika_sharma.123@gmail.com",
+... phone: "9848022338"
+... })
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("5fbacca5dff314371bebecfa")
+}
+
+// Insert several documents (array of documents)
+> db.empDetails.insertMany([
+... {
+... First_Name: "Radhika",
+... Last_Name: "Sharma",
+... Date_Of_Birth: "1995-09-26",
+... e_mail: "radhika_sharma.123@gmail.com",
+... phone: "9000012345"
+... },
+... {
+... First_Name: "Rachel",
+... Last_Name: "Christopher",
+... Date_Of_Birth: "1990-02-16",
+... e_mail: "Rachel_Christopher.123@gmail.com",
+... phone: "9000054321"
+... },
+... {
+... First_Name: "Fathima",
+... Last_Name: "Sheik",
+... Date_Of_Birth: "1990-02-16",
+... e_mail: "Fathima_Sheik.123@gmail.com",
+... phone: "9000054321"
+... }
+... ])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("5fbaccc1dff314371bebecfb"),
+		ObjectId("5fbaccc1dff314371bebecfc"),
+		ObjectId("5fbaccc1dff314371bebecfd")
+	]
+}
+
+// Returns all documents in collection "empDetails". Adding ".pretty()" returns the documents formatted (easier to read)
+> db.empDetails.find()
+{ "_id" : ObjectId("5fbacca5dff314371bebecfa"), "First_Name" : "Radhika", "Last_Name" : "Sharma", "Date_Of_Birth" : "1995-09-26", "e_mail" : "radhika_sharma.123@gmail.com", "phone" : "9848022338" }
+{ "_id" : ObjectId("5fbaccc1dff314371bebecfb"), "First_Name" : "Radhika", "Last_Name" : "Sharma", "Date_Of_Birth" : "1995-09-26", "e_mail" : "radhika_sharma.123@gmail.com", "phone" : "9000012345" }
+{ "_id" : ObjectId("5fbaccc1dff314371bebecfc"), "First_Name" : "Rachel", "Last_Name" : "Christopher", "Date_Of_Birth" : "1990-02-16", "e_mail" : "Rachel_Christopher.123@gmail.com", "phone" : "9000054321" }
+{ "_id" : ObjectId("5fbaccc1dff314371bebecfd"), "First_Name" : "Fathima", "Last_Name" : "Sheik", "Date_Of_Birth" : "1990-02-16", "e_mail" : "Fathima_Sheik.123@gmail.com", "phone" : "9000054321" }
+
+// $and operator finds the document that is written by tutorials point and has the title NoSQL Database
+> db.mycol.find({ $and: [{by: "tutorials point"}, {title: "NoSQL Database"}] })
+{ "_id" : ObjectId("5fbace54259b1c669a25a1f2"), "title" : "NoSQL Database", "description" : "NoSQL database doesn't have tables", "by" : "tutorials point", "url" : "http://www.tutorialspoint.com", "tags" : [ "mongodb", "database", "NoSQL" ], "likes" : 20, "comments" : [ { "user" : "user1", "message" : "My first comment", "dateCreated" : ISODate("2013-12-10T02:35:00Z"), "like" : 0 } ] }
+// There are other logical operators like $or, $not, ..., the syntax is similiar between them, an array of conditions is defined and the result must match the condition and statements
+
+// Updates a document, 2 arguments must be given, the query to find the document, and the set statement that references the wanted changes
+>db.mycol.update({'title':'MongoDB Overview'},{$set:{'title':'New MongoDB Tutorial'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+// Remove a document based on a query
+db.mycol.remove({'title':'MongoDB Overview'})
+WriteResult({"nRemoved" : 1})
+// If a query is not specified, all the collection documents are deleted
+
+// (Applies projection) Chooses what attributes will be included in the resulting documents. In this cases, includes the title and excludes de _id, the _id parameter is included in every result unless stated otherwise.
+> db.mycol.find({},{"title":1,_id:0})
+{ "title" : "New MongoDB Tutorial" }
+{ "title" : "NoSQL Database" }
+
+// Sorts the resulting documents based on one or more attributes, -1 means descending order, 1 means ascending order
+> db.mycol.find({},{"title":1,_id:0}).sort({"title":-1})
+{ "title" : "NoSQL Database" }
+{ "title" : "New MongoDB Tutorial" }
+
+// Creates an index, in this case, for the attribute title. Can also be ascending or descending
+> db.mycol.createIndex({"title":1})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+
+// Deletes the index we created
+> db.mycol.dropIndex({"title":1})
+{ "nIndexesWas" : 2, "ok" : 1 }
+
+// Returns the number of documents grouped by "by_user" attribute
+> db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
+{ "_id" : "Neo4j", "num_tutorial" : 1 }
+{ "_id" : "tutorials point", "num_tutorial" : 2 }
+// There are a lot more expressions that can be used while querying like $avg which computes the average between values
+// The pipeline concept makes it possible to use several commands (like $project which returns a projection of the document, $match which returns documents that match a certain expression, etc.), using the result of the previous command as the input of the current command
+// Example: {$project:{...}, $sort:{...}}, in this example, the result of the projection will be sorted.
+
+
+
+
+
+
+
+
+
+
