@@ -1,0 +1,97 @@
+set foo bar
+get foo
+clear
+ping
+del foo
+get foo
+set foo bar
+del foo bar
+get foo
+set foo bar
+dump foo
+exists foo
+exists fooo
+expire foo 5
+ttl foo
+get foo
+set foo bar
+get foo
+ttl foo
+expire foo 5
+get foo
+date
+get foo
+set foo bar
+expireat foo 1602517600
+get foo
+set foo bar
+expireat foo 1602517700 
+get foo
+mset key1 1 key2 2 key11 11 key12 12 key3 3
+keys *
+keys key*
+keys key
+keys key2
+exists foo
+set foo bar
+existes foo
+exists foo
+select 1
+exists foo
+select 0
+move foo 1
+select 1
+exists foo
+move 0
+select 0
+object idletime videoList
+object idletime foo
+exists foo
+move foo 1
+move foo 0
+select 1
+move foo 0
+select 0
+object idletime foo
+object idletime key11
+object idletime foo
+randomkey
+randomekey
+randomkey
+rename foo bar
+get bar
+rename bar foo
+get bar
+get foo
+dump foo
+del foo
+get foo
+retore foo 0 "\x00\x03bar\b\x00_\x93\xa5\xdfG\x7fw/"
+restore foo 0 "\x00\x03bar\b\x00_\x93\xa5\xdfG\x7fw/"
+get foo
+scan 0 match key*
+scan 0
+sort alpha
+sort xurl alpha
+sort 0 alpha
+sort keys alpha
+keys
+keys *
+sort keys * alpha
+type key
+type foo
+type key1
+get key1
+set test 12121234123412341234123413412341241231
+type test
+type videoList
+x=5
+x = 5
+keys *
+get workers
+type images
+rtpe maxpersons
+type maxpersons
+type maxPersons
+exit
+
