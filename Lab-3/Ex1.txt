@@ -1,0 +1,100 @@
+// NMEC: 93221
+// Pedro Santos
+///////////////
+
+cqlsh> // Node -> Place where data is stored
+cqlsh> // Data Center -> Collection of related nodes
+cqlsh> // Cluster -> Contains one or more data centers
+cqlsh> 
+cqlsh> // Keyspace -> Outermost container for data
+cqlsh> // Replication factor -> Number of machines in the cluster that will receive copies of the same data
+
+// Writes the output of commands to the specified file
+cqlsh> CAPTURE '/home/pedro/Outputfile'
+Now capturing query output to '/home/pedro/Outputfile'.
+
+// Ends capture of output
+cqlsh> capture off;
+
+// Outputs info about the cluster
+cqlsh> describe cluster ;
+Cluster: Test Cluster
+Partitioner: Murmur3Partitioner
+
+// Lists keyspaces in cluster
+cqlsh> describe keyspaces;
+system_schema  system         system_distributed
+system_auth    keyspace_name  system_traces     
+
+// Lists tables in keyspace
+cqlsh> describe tables;
+(...)
+
+// Shows cassandra version
+cqlsh> show version;
+[cqlsh 5.0.1 | Cassandra 3.11.9 | CQL spec 3.4.4 | Native protocol v4]
+// Shows host
+cqlsh> show host;
+Connected to Test Cluster at 127.0.0.1:9042.
+// Create a keyspace, defining the strategy and replication factor
+cqlsh> CREATE KEYSPACE tutorialspoint
+   ... WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+// Deletes the keyspace previously created
+cqlsh> drop tutorialspoint;
+
+cqlsh> CREATE KEYSPACE test_run_cass WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+cqlsh> describe keyspaces
+
+tutorialspoint  system_auth  test_run_cass  system_distributed
+system_schema   system       keyspace_name  system_traces     
+
+// Use keyspace test_run_cass
+cqlsh> use test_run_cass ;
+
+// Create a table with (attributes, type): (id, int) marked as the primary key, (username, text), (password, text). Every table requires exactly 1 primary key.
+cqlsh:test_run_cass> create table myTable( id int PRIMARY KEY, username text, password text );
+// Select all elements from table myTable
+cqlsh:test_run_cass> select * from myTable;
+
+ id | password | username
+----+----------+----------
+
+(0 rows)
+
+// Modify an existing table, in this case, adds a new column "email" of type text
+cqlsh:test_run_cass> Alter Table myTable Add email text;
+cqlsh:test_run_cass> select * from myTable;
+
+ id | email | password | username
+----+-------+----------+----------
+
+(0 rows)
+// Deletes column "email"
+cqlsh:test_run_cass> Alter Table myTable Drop email;
+// Deletes table "myTable"
+cqlsh:test_run_cass> Drop Table myTable;
+// Deletes all rows from "myTable"
+cqlsh:test_run_cass> Truncate myTable;
+// Creates an index call idx_name on table "myTable" column "username"
+cqlsh:test_run_cass> Create Index idx_name On myTable (username);
+// Deletes index previously created
+cqlsh:test_run_cass> Drop Index idx_name;
+
+// Insert data into a table, specifying the columns and data to insert
+cqlsh:test_run_cass> Insert Into myTable (id, password, username) Values (1, 'password', 'IAmUser');
+// Update a rows information, in this case we are changing the the password from a user with id 3 
+cqlsh:test_run_cass> Update myTable Set password='dogsName' Where id=3;
+// Delete the password from a user with id 3, the value will be changed to null
+cqlsh:test_run_cass> Delete password From myTable Where id=3;
+
+// Performs several operations simultaneously
+cqlsh:test_run_cass> Begin Batch
+                 ... Insert Into myTable (id, password, username) Values (5, 'pass1234', 'MyName');
+                 ... Update myTable Set username='NotMyName' Where id=5;
+                 ... Delete password From myTable Where id=5;
+                 ... Apply Batch;
+
+
+
+
+
