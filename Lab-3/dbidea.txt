@@ -1,0 +1,37 @@
+Utilizadores com email, username, horas jogadas por jogo (map)
+
+-- jogos favoritos de jogadores
+
+Jogos com nome, publicadora, desenvolvedor, set de generos, data de lançamento, preço de lançamento
+
+Reviews feitas por utilizadores em relação a um jogo, com descrição, rating, data da review, utilizador que a fez
+
+Historico de sales por jogo, com data de sale, percentagem
+
+1. Pesquisar por todos os jogos de um desenolvedor, ordenados por data de lançamento.
+SELECT * FROM games_by_publisher WHERE publisher='Ubisoft' ORDER BY launch_date;
+
+--  publisher | launch_date | name                     | developer        | genres                                                       | launch_price
+-- -----------+-------------+--------------------------+------------------+--------------------------------------------------------------+--------------
+--    Ubisoft |  2014-03-11 |        Rainbow Six Siege | Ubisoft Montreal |                        {'Multiplayer', 'Shooter', 'Tactics'} |        19.99
+--    Ubisoft |  2018-03-27 |                Far Cry 5 | Ubisoft Montreal | {'Action', 'Co-op', 'First Person', 'Open World', 'Shooter'} |        59.99
+--    Ubisoft |  2020-09-10 | Assassins Creed Valhalla | Ubisoft Montreal |        {'Action', 'Adventure', 'Open World', 'Third Person'} |        59.99
+--    Ubisoft |  2020-10-29 |        Watch Dogs Legion -- |  Ubisoft Toronto |                    {'Open World', 'Shooter', 'Third Person'} |        59.99
+
+2. Pesquisar por jogos do genero "Platformer".
+SELECT * FROM games_by_publisher WHERE genres CONTAINS 'Platformer' ;
+
+--  publisher   | launch_date | name          | developer   | genres                                                        | launch_price
+-- -------------+-------------+---------------+-------------+---------------------------------------------------------------+--------------
+--  Team Cherry |  2017-02-24 | Hollow Knight | Team Cherry |   {'Adventure', 'Metroidvania', 'Platformer', 'Sidescroller'} |        14.99
+--        Valve |  2011-04-19 |      Portal 2 |       Valve | {'Action', 'Comedy', 'First Person', 'Platformer', 'Puzzles'} |         8.19
+
+3. Pesquisar por jogadores com um total de mais de 200h jogadas (ordenados pelo numero total de horas jogadas?). (?)
+4. Pesquisar por jogadores cujo jogo favorito é XXXXX.
+5. Pesquisar por todas as reviews do jogador XXXXX.
+6. Pesquisar as ultimas 10 reviews feitas no jogo XXXXX, ordenadas por score.
+7. Pesquisar todos os jogos lançados em 2020.
+8. Pesquisar pelo maior disconto do jogo XXXXX.
+9. Pesquisar pelas ultimas 5 sales do jogo XXXXX, ordenadas por percentagem.
+10. Pesquisar todos os jogos que estiveram em saldo em dezembro de 2018
+
