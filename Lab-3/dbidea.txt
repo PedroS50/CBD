@@ -19,19 +19,74 @@ SELECT * FROM games_by_publisher WHERE publisher='Ubisoft' ORDER BY launch_date;
 --    Ubisoft |  2020-10-29 |        Watch Dogs Legion -- |  Ubisoft Toronto |                    {'Open World', 'Shooter', 'Third Person'} |        59.99
 
 2. Pesquisar por jogos do genero "Platformer".
-SELECT * FROM games_by_publisher WHERE genres CONTAINS 'Platformer' ;
+SELECT * FROM games_genres WHERE genre='Platformer'  ;
 
---  publisher   | launch_date | name          | developer   | genres                                                        | launch_price
--- -------------+-------------+---------------+-------------+---------------------------------------------------------------+--------------
---  Team Cherry |  2017-02-24 | Hollow Knight | Team Cherry |   {'Adventure', 'Metroidvania', 'Platformer', 'Sidescroller'} |        14.99
---        Valve |  2011-04-19 |      Portal 2 |       Valve | {'Action', 'Comedy', 'First Person', 'Platformer', 'Puzzles'} |         8.19
+--  genre      | game_name     | game_publisher
+-- ------------+---------------+----------------
+--  Platformer | Hollow Knight |    Team Cherry
+--  Platformer |      Portal 2 |          Valve
 
-3. Pesquisar por jogadores com um total de mais de 200h jogadas (ordenados pelo numero total de horas jogadas?). (?)
+3. Pesquisar por jogadores que já jogaram o jogo 'Dishonored 2'.
+
 4. Pesquisar por jogadores cujo jogo favorito é XXXXX.
+
 5. Pesquisar por todas as reviews do jogador XXXXX.
+SELECT * FROM reviews WHERE user='pedroS06@gmail.com';
+
+--  user               | game_name                | game_publisher     | date                            | description                                                                                                                                                                                                                                                                                                                       | score
+-- --------------------+--------------------------+--------------------+---------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------
+--  pedroS06@gmail.com | Assassins Creed Valhalla |            Ubisoft | 2020-12-22 02:48:47.392000+0000 |                                                                                                                                              Possibly the best installment of the current Assassins Creed franchise, they have been perfecting the recent formula and the improvement from Odissey to Valhalla really shows that. |   4.7
+--  pedroS06@gmail.com |            Borderlands 3 |                 2K | 2020-12-22 02:48:47.377000+0000 |                                                                                                                                                                                                           Awesome shooter with lots of unique weapons, definitely an improvement over the previous games of the Borderlands saga. |     4
+--  pedroS06@gmail.com |                Far Cry 5 |            Ubisoft | 2020-12-22 02:48:47.396000+0000 |                                                                                                                                                         Its a good game no doubt, but an average Far Cry game, really feels like their once incredible formula has been getting repetitive, recommend getting the game on a sale. |     3
+--  pedroS06@gmail.com |          Hotline Miami 2 |   Devolver Digital | 2020-12-22 02:48:47.381000+0000 | Looks pretty average at first but after experiencing the game for a few hours i can definitely say i recommend it! Missions can be approached through several ways and the story is interesting enough with a few comedic elemts to it. The mask system is one of the highlights adding different challenges throughout the game. |   4.3
+--  pedroS06@gmail.com |          Life Is Strange |        Square Enix | 2020-12-22 02:48:47.384000+0000 |                                                                                                                                                                                                                                                      Brutally slow paced and not a lot of action, definitely not my type of game. |     1
+--  pedroS06@gmail.com |             TESV: Skyrim | Bethesda Softworks | 2020-12-22 02:48:47.389000+0000 |                                                                                   One of the best open world games ive played, the atmosphere is incredible and has lots of content to explore in terms of quests and side quests. Definitely a gem for how long its been out, just a shame Bethesda is milking the game so much. |   4.6
+
+
 6. Pesquisar as ultimas 10 reviews feitas no jogo XXXXX, ordenadas por score.
-7. Pesquisar todos os jogos lançados em 2020.
-8. Pesquisar pelo maior disconto do jogo XXXXX.
-9. Pesquisar pelas ultimas 5 sales do jogo XXXXX, ordenadas por percentagem.
-10. Pesquisar todos os jogos que estiveram em saldo em dezembro de 2018
+SELECT * FROM reviews_by_game  WHERE game_name='Dead Cells' ORDER BY score ASC;
+
+--  game_name  | score | user               | date                            | description                                                                                                                                                      | game_publisher
+-- ------------+-------+--------------------+---------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------
+--  Dead Cells |     2 | pedroS07@gmail.com | 2020-12-22 03:01:08.366000+0000 |                                                          Gets boring real quick, story is non-existant and the weapons are all pretty much the same. Its a pass. |      Motion Twin
+--  Dead Cells |     3 | pedroS02@gmail.com | 2020-12-22 03:01:08.275000+0000 |                                                                                                 Not a bad metroidvania, good looter but gets repetitive quickly. |      Motion Twin
+--  Dead Cells |     4 | pedroS09@gmail.com | 2020-12-22 03:01:08.353000+0000 |                                                                                  Do recommend! Expecially on sale, its very entertaining and a true time sinker. |      Motion Twin
+--  Dead Cells |   4.3 | pedroS04@gmail.com | 2020-12-22 03:01:08.344000+0000 | One of this years hidden gems, great replayability and smooth gameplay, and as cheap as it is you really shouldnt ignore it, expecially if you enjoy roguelikes. | Devolver Digital
+
+
+7. Pesquisar todos os jogos da publicadora 'Ubisoft' lançados em 2020.
+SELECT * FROM games_by_publisher WHERE publisher='Ubisoft' AND  launch_date > '2020-01-01' AND launch_date < '2021-01-01' ;
+
+--  publisher | launch_date | name                     | developer        | genres                                                | launch_price
+-- -----------+-------------+--------------------------+------------------+-------------------------------------------------------+--------------
+--    Ubisoft |  2020-09-10 | Assassins Creed Valhalla | Ubisoft Montreal | {'Action', 'Adventure', 'Open World', 'Third Person'} |        59.99
+--    Ubisoft |  2020-10-29 |        Watch Dogs Legion |  Ubisoft Toronto |             {'Open World', 'Shooter', 'Third Person'} |        59.99
+
+8. Pesquisar pelo maior disconto do jogo 'Grande Theft Auto V'.
+SELECT MAX(percent) FROM sales_by_game WHERE game_name='Grand Theft Auto V';
+
+--  system.max(percent)
+-- ---------------------
+--                   80
+
+9. Pesquisar pelas ultimas 2 sales do jogo 'TESV: Skyrim', ordenadas por percentagem.
+SELECT * FROM sales_by_game WHERE game_name='TESV: Skyrim' ORDER BY percent LIMIT 2;
+
+--  game_name    | percent | sale_date  | game_publisher
+-- --------------+---------+------------+--------------------
+--  TESV: Skyrim |      50 | 2015-07-05 | Bethesda Softworks
+--  TESV: Skyrim |      65 | 2016-03-13 | Bethesda Softworks
+
+
+10. Pesquisar todos os jogos que estiveram em saldo em 2017, 2018 e 2019, entre os dias 21 e 25.
+SELECT * FROM sales_by_date WHERE sale_date in ('2017-12-21', '2017-12-22', '2017-12-23', '2017-12-24','2018-12-21', '2018-12-22', '2018-12-23', '2018-12-24', '2019-12-21', '2019-12-22', '2019-12-23', '2019-12-24') ; 
+
+--  sale_date  | game_name          | percent | game_publisher
+-- ------------+--------------------+---------+--------------------
+--  2017-12-23 |    Life Is Strange |      25 |        Square Enix
+--  2017-12-23 |       TESV: Skyrim |      70 | Bethesda Softworks
+--  2018-12-21 | Grand Theft Auto V |      75 |     Rockstar Games
+--  2019-12-22 |         Dead Cells |      15 |        Motion Twin
+--  2019-12-22 |       TESV: Skyrim |      75 | Bethesda Softworks
+
 
