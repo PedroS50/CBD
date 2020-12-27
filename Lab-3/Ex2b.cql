@@ -1,3 +1,8 @@
+--------------/
+-- NMEC: 93221
+-- Pedro Santos
+--------------/
+
 -- Nota:
 -- As inserções do id (uuid) do video são feitas de forma manual para facilitar a demonstração das queries,
 -- numa situação real seria utilizada uma função (por exemplo, now()), para obter um uuid único que seria

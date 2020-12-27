@@ -1,3 +1,8 @@
+--------------/
+-- NMEC: 93221
+-- Pedro Santos
+--------------/
+
 INSERT INTO gaming_records.games_by_publisher (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Ghost of Tsushima', '2020-07-17', {'Stealth', 'Action', 'Adventure'}, 'Sony Interactive Entertainment', 'Sucker Punch Productions', 69.99);
 INSERT INTO gaming_records.games_by_publisher (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Dishonored 2', '2016-11-11', {'Stealth', 'First Person', 'Action'}, 'Bethesda Softworks', 'Arkane Studios', 59.99);
 INSERT INTO gaming_records.games_by_publisher (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Grande Theft Auto V', '2013-09-17', {'Open World', 'Action', 'Crime', 'Multiplayer', 'Shooter'}, 'Rockstar Games', 'Rockstar North', 59.99);
@@ -18,111 +23,6 @@ INSERT INTO gaming_records.games_by_publisher (name, launch_date, genres, publis
 INSERT INTO gaming_records.games_by_publisher (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Hearthstone', '2014-03-11', {'Multiplayer', 'Fantasy', 'Cards'}, 'Blizzard Entertainment', 'Blizzard Entertainment', 00.00);
 INSERT INTO gaming_records.games_by_publisher (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Watch Dogs Legion', '2020-10-29', {'Third Person', 'Shooter', 'Open World'}, 'Ubisoft', 'Ubisoft Toronto', 59.99);
 INSERT INTO gaming_records.games_by_publisher (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Rainbow Six Siege', '2014-03-11', {'Multiplayer', 'Shooter', 'Tactics'}, 'Ubisoft', 'Ubisoft Montreal', 19.99);
-
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Stealth', 'Ghost of Tsushima', 'Sony Interactive Entertainment');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Ghost of Tsushima', 'Sony Interactive Entertainment');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Adventure', 'Ghost of Tsushima', 'Sony Interactive Entertainment');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Sealth', 'Dishonored 2', 'Betheda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('First Person', 'Dishonored 2', 'Betheda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Dishonored 2', 'Betheda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Open World', 'Grande Theft Auto V', 'Rockstar Games');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Grande Theft Auto V', 'Rockstar Games');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Crime', 'Grande Theft Auto V', 'Rockstar Games');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Multiplayer', 'Grande Theft Auto V', 'Rockstar Games');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Shooter', 'Grande Theft Auto V', 'Rockstar Games');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Open World', 'Far Cry 5', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Far Cry 5', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('First Person', 'Far Cry 5', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Shooter', 'Far Cry 5', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Co-op', 'Far Cry 5', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Open World', 'Assassins Creed Valhalla', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Assassins Creed Valhalla', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Third Person', 'Assassins Creed Valhalla', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Adventure', 'Assassins Creed Valhalla', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Open World', 'TESV: Skyrim', 'Bethesda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'TESV: Skyrim', 'Bethesda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Adventure', 'TESV: Skyrim', 'Bethesda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Fantasy', 'TESV: Skyrim', 'Bethesda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('RPG', 'TESV: Skyrim', 'Bethesda Softworks');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Roguevania', 'Dead Cells', 'Motion Twin');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Roguelike', 'Dead Cells', 'Motion Twin');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Hack & Slash', 'Dead Cells', 'Motion Twin');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Sidescroller', 'Dead Cells', 'Motion Twin');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Metroidvania', 'Hollow Knight', 'Team Cherry');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Platformer', 'Hollow Knight', 'Team Cherry');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Adventure', 'Hollow Knight', 'Team Cherry');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Sidescroller', 'Hollow Knight', 'Team Cherry');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Looter Shooter', 'Borderlands 3', '2K');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Open World', 'Borderlands 3', '2K');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('RPG', 'Borderlands 3', '2K');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('First Person', 'Borderlands 3', '2K');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Borderlands 3', '2K');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Violent', 'Borderlands 3', '2K');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Comedy', 'Magicka', 'Paradox Interactive');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Co-op', 'Magicka', 'Paradox Interactive');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Magicka', 'Paradox Interactive');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Fantasy', 'Magicka', 'Paradox Interactive');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('RPG', 'Magicka', 'Paradox Interactive');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Shooter', 'Hotline Miami 2', 'Devolver Digital');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Hotline Miami 2', 'Devolver Digital');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Violent', 'Hotline Miami 2', 'Devolver Digital');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Top Down', 'Hotline Miami 2', 'Devolver Digital');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Episodic', 'Life Is Strange', 'Square Enix');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Story Focused', 'Life Is Strange', 'Square Enix');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Multiple Endings', 'Life Is Strange', 'Square Enix');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Time Travel', 'Life Is Strange', 'Square Enix');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Platformer', 'Portal 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Puzzles', 'Portal 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Action', 'Portal 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('First Person', 'Portal 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Comedy', 'Portal 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Shooter', 'Apex Legends', 'Electronic Arts');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Multiplayer', 'Apex Legends', 'Electronic Arts');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('First Person', 'Apex Legends', 'Electronic Arts');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Battle Royale', 'Apex Legends', 'Electronic Arts');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Multiplayer', 'Rocket League', 'Psyonix');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Sports', 'Rocket League', 'Psyonix');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Racing', 'Rocket League', 'Psyonix');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Shooter', 'Half-Life', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('First Person', 'Half-Life', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Sci-Fi', 'Half-Life', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('MOBA', 'Dota 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Strategy', 'Dota 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Fantasy', 'Dota 2', 'Valve');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Multiplayer', 'Hearthstone', 'Blizzard Entertainment');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Fantasy', 'Hearthstone', 'Blizzard Entertainment');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Cards', 'Hearthstone', 'Blizzard Entertainment');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Third Person', 'Watch Dogs Legion', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Shooter', 'Watch Dogs Legion', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Open World', 'Watch Dogs Legion', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Multiplayer', 'Rainbow Six Siege', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Shooter', 'Rainbow Six Siege', 'Ubisoft');
---INSERT INTO gaming_records.games_genres (genre, game_name, game_publisher) VALUES ('Tactics', 'Rainbow Six Siege', 'Ubisoft');
-
-
-
-
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Ghost of Tsushima', '2020-07-17', {'Stealth', 'Action', 'Adventure'}, 'Sony Interactive Entertainment', 'Sucker Punch Productions', 69.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Dishonored 2', '2016-11-11', {'Stealth', 'First Person', 'Action'}, 'Bethesda Softworks', 'Arkane Studios', 59.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Grande Theft Auto V', '2013-09-17', {'Open World', 'Action', 'Crime', 'Multiplayer', 'Shooter'}, 'Rockstar Games', 'Rockstar North', 59.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Far Cry 5', '2018-03-27', {'Open World', 'Action', 'First Person', 'Shooter', 'Co-op'}, 'Ubisoft', 'Ubisoft Montreal', 59.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Assassins Creed Valhalla', '2020-09-10', {'Open World', 'Action', 'Third Person', 'Adventure'}, 'Ubisoft', 'Ubisoft Montreal', 59.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('TESV: Skyrim', '2011-09-11', {'Open World', 'Action', 'Adventure', 'Fantasy', 'RPG'}, 'Bethesda Softworks', 'Bethesda Game Studios', 59.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Dead Cells', '2018-08-06', {'Roguevania', 'Roguelike', 'Hack & Slash', 'Sidescroller'}, 'Motion Twin', 'Motion Twin', 24.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Hollow Knight', '2017-02-24', {'Metroidvania', 'Platformer', 'Adventure', 'Sidescroller'}, 'Team Cherry', 'Team Cherry', 14.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Borderlands 3', '2019-09-13', {'Looter Shooter', 'Open World', 'RPG', 'First Person', 'Action', 'Violent'}, '2K', 'Gearbox Software', 59.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Magicka', '2011-01-25', {'Comedy', 'Co-op', 'Action', 'Fantasy', 'RPG'}, 'Paradox Interactive', 'Arrowhead Game Studios', 9.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Hotline Miami 2', '2015-03-10', {'Shooter', 'Action', 'Violent', 'Top Down'}, 'Devolver Digital', 'Dennaton Games', 14.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Life Is Strange', '2015-01-30', {'Episodic', 'Story Focused', 'Multiple Endings', 'Time Travel'}, 'Square Enix', 'DONTNOD Entertainment', 19.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Portal 2', '2011-04-19', {'Platformer', 'Puzzles', 'Action', 'First Person', 'Comedy'}, 'Valve', 'Valve', 8.19);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Apex Legends', '2019-02-04', {'Shooter', 'Multiplayer', 'First Person', 'Battle Royale'}, 'Electronic Arts', 'Respawn Entertainment', 00.00);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Rocket League', '2015-07-07', {'Multiplayer', 'Sports', 'Racing'}, 'Psyonix', 'Psyonix', 19.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Half-Life', '1998-11-08', {'Shooter', 'First Person', 'Sci-Fi'}, 'Valve', 'Valve', 30.00);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Dota 2', '2013-07-09', {'MOBA', 'Strategy', 'Fantasy'}, 'Valve', 'Valve', 19.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Hearthstone', '2014-03-11', {'Multiplayer', 'Fantasy', 'Cards'}, 'Blizzard Entertainment', 'Blizzard Entertainment', 00.00);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Watch Dogs Legion', '2020-10-29', {'Third Person', 'Shooter', 'Open World'}, 'Ubisoft', 'Ubisoft Toronto', 59.99);
---INSERT INTO gaming_records.games_by_tags (name, launch_date, genres, publisher, developer, launch_price) VALUES ('Rainbow Six Siege', '2014-03-11', {'Multiplayer', 'Shooter', 'Tactics'}, 'Ubisoft', 'Ubisoft Montreal', 19.99);
-
 
 INSERT INTO gaming_records.users (email, username, hours_played) VALUES ('pedroS01@gmail.com', 'PedroS01', {'Dishonored 2': 48, 'Far Cry 5': 53, 'Hollow Knight': 67, 'Magicka': 15, 'Apex Legends': 46});
 INSERT INTO gaming_records.users (email, username, hours_played) VALUES ('pedroS02@gmail.com', 'PedroS02', {'Dota 2': 2, 'Half-Life': 26, 'Heathstone': 72, 'Apex Legends': 103});
@@ -173,7 +73,6 @@ INSERT INTO gaming_records.reviews_by_game (user, description, score, date, game
 INSERT INTO gaming_records.reviews_by_game (user, description, score, date, game_name, game_publisher) VALUES ('pedroS07@gmail.com', 'Gets boring real quick, story is non-existant and the weapons are all pretty much the same. Its a pass.', 2, dateof(now()), 'Dead Cells', 'Motion Twin');
 INSERT INTO gaming_records.reviews_by_game (user, description, score, date, game_name, game_publisher) VALUES ('pedroS07@gmail.com', 'Average platformer, bad graphics and the comedic elements are not funny at all.', 1.7, dateof(now()), 'Portal 2', 'Valve');
 INSERT INTO gaming_records.reviews_by_game (user, description, score, date, game_name, game_publisher) VALUES ('pedroS07@gmail.com', 'Too hard, requires too much time to trully appreciate it.', 2.2, dateof(now()), 'Hollow Knight', 'Team Cherry');
-
 
 INSERT INTO gaming_records.sales_by_date (sale_date, percent, game_name, game_publisher) VALUES ('2019-12-22', 75, 'TESV: Skyrim', 'Bethesda Softworks');
 INSERT INTO gaming_records.sales_by_date (sale_date, percent, game_name, game_publisher) VALUES ('2015-07-05', 50, 'TESV: Skyrim', 'Bethesda Softworks');

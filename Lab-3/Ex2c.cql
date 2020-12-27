@@ -1,6 +1,11 @@
+--------------/
+-- NMEC: 93221
+-- Pedro Santos
+--------------/
+
 -- c)
 -- 7.
-SELECT * FROM video_user WHERE author='user2@gmail.com';
+SELECT * FROM video_streaming.video_user WHERE author='user2@gmail.com';
 -- author          | upload_date                     | description        | id                                   | name            | tags
 -- -----------------+---------------------------------+--------------------+--------------------------------------+-----------------+------------------------------------
 -- user2@gmail.com | 2020-09-06 15:20:40.000000+0000 | Sample Description | 9e04ffef-f74f-4677-aefd-28e8c8958506 | Sample Video V3 | ['test', 'bot', 'fake', 'classic']
@@ -8,14 +13,14 @@ SELECT * FROM video_user WHERE author='user2@gmail.com';
 -- user2@gmail.com | 2020-09-04 13:18:38.000000+0000 | Sample Description | 9e04ffef-f74f-4677-aefd-28e8c8958504 |    Sample Video |                    ['test', 'bot']
 
 -- 8.
-SELECT * FROM comment_user WHERE author='user2@gmail.com';
+SELECT * FROM video_streaming.comment_user WHERE author='user2@gmail.com';
 -- author          | comment_date                    | description                                          | video_id
 -- -----------------+---------------------------------+------------------------------------------------------+--------------------------------------
 -- user2@gmail.com | 2020-12-21 16:53:41.344000+0000 |       ipsum dolor sit amet, consectetuer adi piscing | 9e04ffef-f74f-4677-aefd-28e8c8958508
 -- user2@gmail.com | 2020-12-21 16:53:41.341000+0000 | tempus, lorem fringilla ornare placerat, orc i lacus | 9e04ffef-f74f-4677-aefd-28e8c8958507
 
 -- 9.
-SELECT * FROM comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958518;
+SELECT * FROM video_streaming.comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958518;
 
 -- video_id                             | comment_date                    | author          | description
 -- --------------------------------------+---------------------------------+-----------------+---------------------------------------------------------------
@@ -26,13 +31,13 @@ SELECT * FROM comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958518;
 -- 9e04ffef-f74f-4677-aefd-28e8c8958518 | 2020-12-21 16:53:41.411000+0000 | user1@gmail.com |        Sed pharetra, felis eget varius ultrices, mauris ipsum
 
 -- 10.
-SELECT AVG(value) FROM rating WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513;
+SELECT AVG(value) FROM video_streaming.rating WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513;
 
 -- system.avg(value)
 -- -------------------
 --                 3
 
-SELECT COUNT(*) FROM rating WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513;
+SELECT COUNT(*) FROM video_streaming.rating WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513;
 
 -- count
 -- -------
@@ -40,25 +45,25 @@ SELECT COUNT(*) FROM rating WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513;
 
 -- d)
 -- 1.
-SELECT * FROM comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513 LIMIT 3;
+SELECT * FROM video_streaming.comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513 LIMIT 3;
 -- video_id                             | comment_date                    | author          | description
 -- --------------------------------------+---------------------------------+-----------------+------------------------------------------------------------------------
 -- 9e04ffef-f74f-4677-aefd-28e8c8958513 | 2020-12-21 17:01:29.457000+0000 | user1@gmail.com | Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas
 -- 9e04ffef-f74f-4677-aefd-28e8c8958513 | 2020-12-21 17:01:29.446000+0000 | user8@gmail.com |                                       Nam porttitor scelerisque neque.
 
 -- 2.
-SELECT tags FROM video WHERE id=9e04ffef-f74f-4677-aefd-28e8c8958511;
+SELECT tags FROM video_streaming.video WHERE id=9e04ffef-f74f-4677-aefd-28e8c8958511;
 -- tags
 -- --------------------------------------------
 -- ['music', 'album', 'trap', 'instrumental']
 
 -- 3.
-SELECT * FROM video WHERE tags CONTAINS 'Aveiro';
+SELECT * FROM video_streaming.video WHERE tags CONTAINS 'Aveiro';
 -- id | upload_date | author | description | name | tags
 -- ----+-------------+--------+-------------+------+------
 
 -- 4.
-SELECT * FROM event WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513 AND email='user2@gmail.com' LIMIT 5;
+SELECT * FROM video_streaming.event WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513 AND email='user2@gmail.com' LIMIT 5;
 
 -- video_id                             | email           | event_date                      | type  | video_time
 -- --------------------------------------+-----------------+---------------------------------+-------+------------
@@ -68,7 +73,7 @@ SELECT * FROM event WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513 AND emai
 
 
 -- 5.
-SELECT * FROM video_user WHERE author='user3@gmail.com' AND upload_date > '2020-09-08' AND upload_date < '2020-09-10' ;
+SELECT * FROM video_streaming.video_user WHERE author='user3@gmail.com' AND upload_date > '2020-09-08' AND upload_date < '2020-09-10' ;
 -- author          | upload_date                     | description        | id                                   | name | tags
 -- -----------------+---------------------------------+--------------------+--------------------------------------+------+---------------------------------------
 -- user3@gmail.com | 2020-09-09 19:23:43.000000+0000 | Sample Description | 9e04ffef-f74f-4677-aefd-28e8c8958509 | Will |   ['music', 'hiphop', 'experimental']
@@ -79,7 +84,7 @@ SELECT * FROM video_user WHERE author='user3@gmail.com' AND upload_date > '2020-
 -- de um utilizador, ordenados inversamente pela data de partilha.
 
 -- 7.
-SELECT * FROM follower_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958501;
+SELECT * FROM video_streaming.follower_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958501;
 -- video_id                             | email
 -- --------------------------------------+-----------------
 -- 9e04ffef-f74f-4677-aefd-28e8c8958501 | user2@gmail.com
@@ -89,19 +94,19 @@ SELECT * FROM follower_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958501
 -- Para obter os resultados seria necessário realizar pelo menos 2 queries. 
 -- O primeiro para obter a lista de videos que o utilizador segue, 
 -- e de seguida um query por video para obter os comentários.
-SELECT * FROM follower_user WHERE email='user8@gmail.com';
+SELECT * FROM video_streaming.follower_user WHERE email='user8@gmail.com';
 -- email           | video_id
 -- -----------------+--------------------------------------
 -- user8@gmail.com | 9e04ffef-f74f-4677-aefd-28e8c8958504
 -- user8@gmail.com | 9e04ffef-f74f-4677-aefd-28e8c8958519
 
 
-SELECT * FROM comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958504;
+SELECT * FROM video_streaming.comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958504;
 -- video_id                             | comment_date                    | author          | description
 -- --------------------------------------+---------------------------------+-----------------+------------------------------------------
 --  9e04ffef-f74f-4677-aefd-28e8c8958504 | 2020-12-21 17:01:29.443000+0000 | user6@gmail.com | mi eleifend egestas. Sed pharetra, felis
 
-SELECT * FROM comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958519;
+SELECT * FROM video_streaming.comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958519;
 -- video_id                             | comment_date                    | author          | description
 -- --------------------------------------+---------------------------------+-----------------+---------------------------------------------------------------
 -- 9e04ffef-f74f-4677-aefd-28e8c8958519 | 2020-12-21 17:01:29.448000+0000 | user5@gmail.com | elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris
@@ -111,7 +116,7 @@ SELECT * FROM comment_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958519;
 -- Impossivel realizar em Cassandra. 
 
 -- 10.
-SELECT * FROM video WHERE id IN ( 9e04ffef-f74f-4677-aefd-28e8c8958501,9e04ffef-f74f-4677-aefd-28e8c8958502,9e04ffef-f74f-4677-aefd-28e8c8958503,9e04ffef-f74f-4677-aefd-28e8c8958504,9e04ffef-f74f-4677-aefd-28e8c8958505,9e04ffef-f74f-4677-aefd-28e8c8958506,9e04ffef-f74f-4677-aefd-28e8c8958507,9e04ffef-f74f-4677-aefd-28e8c8958508,9e04ffef-f74f-4677-aefd-28e8c8958509,9e04ffef-f74f-4677-aefd-28e8c8958510);
+SELECT * FROM video_streaming.video WHERE id IN ( 9e04ffef-f74f-4677-aefd-28e8c8958501,9e04ffef-f74f-4677-aefd-28e8c8958502,9e04ffef-f74f-4677-aefd-28e8c8958503,9e04ffef-f74f-4677-aefd-28e8c8958504,9e04ffef-f74f-4677-aefd-28e8c8958505,9e04ffef-f74f-4677-aefd-28e8c8958506,9e04ffef-f74f-4677-aefd-28e8c8958507,9e04ffef-f74f-4677-aefd-28e8c8958508,9e04ffef-f74f-4677-aefd-28e8c8958509,9e04ffef-f74f-4677-aefd-28e8c8958510);
 
 -- id                                   | upload_date                     | author          | description        | name             | tags
 -- --------------------------------------+---------------------------------+-----------------+--------------------+------------------+----------------------------------------------
@@ -126,10 +131,5 @@ SELECT * FROM video WHERE id IN ( 9e04ffef-f74f-4677-aefd-28e8c8958501,9e04ffef-
 -- 9e04ffef-f74f-4677-aefd-28e8c8958509 | 2020-09-09 19:23:43.000000+0000 | user3@gmail.com | Sample Description |             Will |          ['music', 'hiphop', 'experimental']
 -- 9e04ffef-f74f-4677-aefd-28e8c8958510 | 2020-09-10 20:24:44.000000+0000 | user3@gmail.com | Sample Description |           Search | ['music', 'hiphop', 'instrumental', 'fresh']
 
-
 -- 11.
--- ???
-
-
-
-
+-- Impossivel realizar em Cassandra. 

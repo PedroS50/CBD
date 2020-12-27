@@ -1,3 +1,8 @@
+##############/
+## NMEC: 93221
+## Pedro Santos
+##############/
+
 from cassandra.cluster import Cluster
 
 cluster = Cluster()
@@ -26,7 +31,7 @@ def main():
     session.execute(query)
 
     ''' Queries... '''
-    query = "SELECT * FROM event WHERE video_id=13 AND email='user2@gmail.com' LIMIT 5;"
+    query = "SELECT * FROM video_streaming.event WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958513 AND email='user2@gmail.com' LIMIT 5;"
     for x in session.execute(query):
         print(x)
     print()
@@ -34,11 +39,11 @@ def main():
     for x in session.execute(query):
         print(x)
     print()
-    query = "SELECT * FROM follower_video WHERE video_id=1;"
+    query = "SELECT * FROM video_streaming.follower_video WHERE video_id=9e04ffef-f74f-4677-aefd-28e8c8958501;"
     for x in session.execute(query):
         print(x)
     print()
-    query = "SELECT * FROM video WHERE id IN ( 1,2,3,4,5,6,7,8,9,10);"
+    query = "SELECT * FROM video_streaming.video WHERE id IN ( 9e04ffef-f74f-4677-aefd-28e8c8958501,9e04ffef-f74f-4677-aefd-28e8c8958502,9e04ffef-f74f-4677-aefd-28e8c8958503,9e04ffef-f74f-4677-aefd-28e8c8958504,9e04ffef-f74f-4677-aefd-28e8c8958505,9e04ffef-f74f-4677-aefd-28e8c8958506,9e04ffef-f74f-4677-aefd-28e8c8958507,9e04ffef-f74f-4677-aefd-28e8c8958508,9e04ffef-f74f-4677-aefd-28e8c8958509,9e04ffef-f74f-4677-aefd-28e8c8958510);"
     for x in session.execute(query):
         print(x)
     print()

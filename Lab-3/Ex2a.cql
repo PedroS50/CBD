@@ -1,3 +1,8 @@
+--------------/
+-- NMEC: 93221
+-- Pedro Santos
+--------------/
+
 CREATE KEYSPACE IF NOT EXISTS video_streaming WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': 1 };
 
 DROP TABLE IF EXISTS video_streaming.user;
