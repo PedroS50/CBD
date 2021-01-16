@@ -1,0 +1,39 @@
+#1
+match (p:Person)-[d:DIRECTED]->(m:Movie)
+match (p:Person)-[a:ACTED_IN]->(m:Movie)
+return p.name as actor_name, m.title as movie_title;
+
+#2
+match (p:Person)-[:ACTED_IN]->(m:Movie)
+where m.released > 2005
+return m.title as movie_title, collect(p.name) as actors_names;
+
+#3
+match (p:Person)-[r]-(m:Movie)
+with p, count(r) as nRel, m
+where nRel >= 2
+return p, nRel, m;
+
+#4
+match (p1:Person)-[:REVIEWED]->(m:Movie)<-[:REVIEWED]-(p2:Person)
+where id(p1) > id(p2)
+return DISTINCT p1.name, p2.name, m.title as movie_title;
+// where id(p1) > id(p2) utilizado para obter pares únicos
+
+#5
+match (p1:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person)
+where id(p1) > id(p2)
+with p1, p2, count(m) as movie_count
+where movie_count >= 2
+return DISTINCT p1.name, p2.name, movie_count;
+
+#6
+match (p1:Person)-[:ACTED_IN]->(m:Movie {title: "Apollo 13"})
+with round(avg(m.released - p1.born)) as average
+return average;
+
+
+
+
+
+
