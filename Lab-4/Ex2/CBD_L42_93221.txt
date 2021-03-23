@@ -1,0 +1,113 @@
+////////////////
+// NMEC: 93221
+// Pedro Santos
+///////////////
+
+#1
+match (p:Person)-[d:DIRECTED]->(m:Movie)
+match (p:Person)-[a:ACTED_IN]->(m:Movie)
+return p.name as actor_name, m.title as movie_title;
+
+#2
+match (p:Person)-[:ACTED_IN]->(m:Movie)
+where m.released > 2005
+return m.title as movie_title, collect(p.name) as actors_names;
+
+#3
+match (p:Person)-[r]-(m:Movie)
+with p, count(r) as nRel, m
+where nRel >= 2
+return p, nRel, m;
+
+#4
+match (p1:Person)-[:REVIEWED]->(m:Movie)<-[:REVIEWED]-(p2:Person)
+where id(p1) > id(p2)
+return DISTINCT p1.name, p2.name, m.title as movie_title;
+// where id(p1) > id(p2) utilizado para obter pares únicos
+
+#5
+match (p1:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person)
+where id(p1) > id(p2)
+with p1, p2, count(m) as movie_count
+where movie_count >= 2
+return DISTINCT p1.name, p2.name, movie_count;
+
+#6
+match (p1:Person)-[:ACTED_IN]->(m:Movie {title: "Apollo 13"})
+with avg(m.released - p1.born) as average
+return average;
+
+#7
+match (p1:Person)-[:ACTED_IN]->(m:Movie)
+with m, round(100 * avg(m.released - p1.born)) / 100 as average_age
+return m.title, average_age
+ORDER BY average_age DESC
+LIMIT 10;
+
+#8
+match (p1:Person)-[r:ACTED_IN]->(m:Movie)
+with m, (m.released - avg(p1.born)) as age
+order by age
+limit 1
+match (p1:Person)-[:ACTED_IN]->(m)
+return p1, m;
+
+#9
+MATCH (p1:Person { name: 'John Cusack' }),(p2:Person { name: 'Demi Moore' }), p = shortestPath((p1)-[*..30]-(p2))
+RETURN p as shortest_path;
+
+#10
+MATCH (p1:Person { name: 'Keanu Reeves' }),(p2:Person { name: 'Tom Cruise' }), p = shortestPath((p1)-[*..30]-(p2))
+RETURN length(p) as shortest_length;
+
+#11
+MATCH (p1:Person),(p2:Person), p = shortestPath((p1)-[*..30]-(p2))
+where p1.name =~ 'Jim.*' and p2.name =~ 'Kevin.*'
+RETURN length(p) as shortest_length
+order by length(p)
+limit 1;
+
+#12
+MATCH (p1:Person {name: 'Jim Cash'}),(p2:Person), p = shortestPath((p1)-[*..2]-(p2))
+where id(p1) <> id(p2) and length(p) = 2
+return p2;
+
+#13
+MATCH (p1:Person),(p2:Person {name: 'Kevin Bacon'}), p = shortestPath((p1)-[*..60]-(p2))
+where p1.name <> 'Kevin Bacon'
+return length(p) as biggest_length
+order by length(p) DESC
+limit 1;
+
+#14
+MATCH (p1:Person),(p2:Person), p = shortestPath((p1)-[*..100]-(p2))
+where p1.name <> p2.name
+return length(p) as biggest_length
+order by length(p) DESC
+limit 1;
+
+#15
+MATCH p = shortestPath((p1:Person)-[*..50]-(p2:Person))
+where id(p1) > id(p2)
+with length(p) as len, p
+return len, count(len)
+order by len;
+
+#16
+MATCH p = shortestPath((p1:Person)-[:ACTED_IN*..50]-(p2:Person))
+where id(p1) > id(p2)
+with length(p) as len, p1
+return p1, avg(len) as average_length
+order by average_length
+limit 10;
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+////////////////
+// NMEC: 93221
+// Pedro Santos
+///////////////
+
+// a)
+// Entidades:
+// Person - svn_id, real_name, organization
+// Project - project_name
+// Relações:
+// Committed - num, role_on_project
+
+// b)
+// 1. Criar projeto e base de dados;
+// 2. Opções da base de dados -> "Open Folder" -> "Import" -> copiar ficheiro git_selection para a pasta;
+// 3. Iniciar base de dados;
+// 4. Adicionar constraints às entidades para evitar nodes duplicados:
+//  Create Constraint On (p:Project) Assert p.project_name Is Unique;
+//  Create Constraint On (p:Person) Assert p.svn_id Is Unique;
+// 5. Adicionar entidades à BD:
+//  LOAD CSV WITH HEADERS FROM 'file:///git_selection.csv' AS row
+//  MERGE (proj: Project {project_name: row.project_name})
+//  MERGE (person: Person {svn_id: row.svn_id})
+//  SET person.real_name=row.real_name, person.organization=row.organization;
+// 6. Adicionar relações à BD:
+//  LOAD CSV WITH HEADERS FROM 'file:///git_selection.csv' AS row
+//  MATCH (per: Person {svn_id: row.svn_id})
+//  MATCH (proj: Project {project_name: row.project_name})
+//  MERGE (per)-[:COMMITED {num: row.num, role_on_project: row.role_on_project}]->(proj);
+
+// c)
+
+#1
+match (p:Person)
+return p;
+
+#2
+match (p:Person)
+return p.real_name as name;
+
+#3
+match (per:Person)-[rel:COMMITED]->(proj:Project)
+with proj, count(per) as n_people
+where n_people >= 1
+return proj;
+
+#4
+match (per:Person)-[:COMMITED]->(proj:Project)
+with per, count(Distinct proj) as n_projects
+return per, n_projects;
+
+#5
+match (per:Person)-[:COMMITED]->(proj:Project)
+with per, count(Distinct proj) as n_projects
+return per, n_projects
+order by n_projects DESC;
+
+#6
+match (per:Person)-[com:COMMITED]->(proj:Project)
+with proj, count(Distinct per.svn_id) as n_people
+return proj, n_people;
+
+#7
+match (per:Person)-[com:COMMITED {role_on_project: 'Committer'}]->(proj:Project)
+with proj, count(Distinct per) as n_people
+return proj, n_people
+order by n_people DESC;
+
+#8
+match (per1:Person {svn_id: 'atm'})-[:COMMITED]->(proj:Project)<-[:COMMITED]-(per2:Person)
+return per1.real_name, per2.real_name, proj.project_name;
+
+#9
+match (per1:Person {svn_id: 'atm'})-[:COMMITED {role_on_project: 'PMC'}]->(proj:Project)<-[:COMMITED {role_on_project: 'Committer'}]-(per2:Person)
+return per1.real_name, per2.real_name, proj.project_name;
+
+
+
+
+
+
